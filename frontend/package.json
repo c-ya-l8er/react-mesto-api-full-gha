@@ -3,14 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://c-ya-l8er.github.io/react-mesto-auth/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "yarn run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "yarn run build && scp -r ./dist/* c-ya-l8er@62.84.112.212:/home/c-ya-l8er/frontend"
   },
   "dependencies": {
     "react": "^18.2.0",

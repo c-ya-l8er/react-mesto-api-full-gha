@@ -3,8 +3,9 @@ import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/react-mesto-auth",
+  base: "/",
   plugins: [react()],
+  server: {port: 3000,}
 });
 
 
