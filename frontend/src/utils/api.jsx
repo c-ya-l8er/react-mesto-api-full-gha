@@ -75,11 +75,19 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-71/",
+  baseUrl: "https://api.mesto-c-ya-l8er.nomoredomainsrocks.ru",
   headers: {
-    authorization: "a04dfc18-37ef-4557-8dab-9c7099f92080",
+    'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     "Content-Type": "application/json",
   },
 });
+
+// const api = new Api({
+//   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-71/",
+//   headers: {
+//     authorization: "a04dfc18-37ef-4557-8dab-9c7099f92080",
+//     "Content-Type": "application/json",
+//   },
+// });
 
 export default api;

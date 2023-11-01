@@ -19,7 +19,7 @@ app.use(
   cors({
     origin: [
       'https://mesto-c-ya-l8er.nomoredomainsrocks.ru',
-      'http://mesto-c-ya-l8er.nomoredomainsrocks.ru',
+      'https://api.mesto-c-ya-l8er.nomoredomainsrocks.ru',
       'localhost:3000',
     ],
     allowedHeaders: ['Content-Type', 'Authorization'],
