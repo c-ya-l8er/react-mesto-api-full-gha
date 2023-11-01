@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 62.84.112.212
+IP-адрес: 62.84.112.212
 
 Frontend https://mesto-c-ya-l8er.nomoredomainsrocks.ru
 
