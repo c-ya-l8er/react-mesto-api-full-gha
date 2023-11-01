@@ -1,6 +1,8 @@
 const allowedCors = [
   'https://mesto-c-ya-l8er.nomoredomainsrocks.ru',
   'http://mesto-c-ya-l8er.nomoredomainsrocks.ru',
+  'https://api.mesto-c-ya-l8er.nomoredomainsrocks.ru',
+  'http://api.mesto-c-ya-l8er.nomoredomainsrocks.ru',
   'localhost:3000',
 ];
 
