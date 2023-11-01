@@ -77,7 +77,6 @@ class Api {
 const api = new Api({
   baseUrl: "https://api.mesto-c-ya-l8er.nomoredomainsrocks.ru",
   headers: {
-    'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     "Content-Type": "application/json",
   },
 });

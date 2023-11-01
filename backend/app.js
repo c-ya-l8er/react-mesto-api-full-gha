@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors, celebrate, Joi } = require('celebrate');
-// const cors = require('./middlewares/cors');
-const cors = require('cors');
+const cors = require('./middlewares/cors');
+// const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const router = require('./routes/index');
 const { login, createUser } = require('./controllers/users');
@@ -14,18 +14,18 @@ const httpRegex = /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-
 const { PORT = 3000, MONGO_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
 
 const app = express();
-// app.use(cors);
-app.use(
-  cors({
-    origin: [
-      'https://mesto-c-ya-l8er.nomoredomainsrocks.ru',
-      'https://api.mesto-c-ya-l8er.nomoredomainsrocks.ru',
-      'localhost:3000',
-    ],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-  }),
-);
+app.use(cors);
+// app.use(
+//   cors({
+//     origin: [
+//       'https://mesto-c-ya-l8er.nomoredomainsrocks.ru',
+//       'https://api.mesto-c-ya-l8er.nomoredomainsrocks.ru',
+//       'localhost:3000',
+//     ],
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+//     credentials: true,
+//   }),
+// );
 app.use(express.json());
 app.use(requestLogger);
 
