@@ -41,7 +41,7 @@ function App() {
       navigate("/", { replace: true });
       return;
     }
-    navigate("/sign-up", { replace: true });
+    navigate("/signup", { replace: true });
   }, [loggedIn]);
 
   const handleTokenCheck = () => {
@@ -85,7 +85,7 @@ function App() {
       .then((data) => {
         if (data) {
           handleRegStatusClick(true);
-          navigate("/sign-in", { replace: true });
+          navigate("/signin", { replace: true });
         }
       })
       .catch((err) => {
@@ -98,7 +98,7 @@ function App() {
     localStorage.removeItem("token");
     setLoggedIn(false);
     setEmail("");
-    navigate("/sign-in", { replace: true });
+    navigate("/signin", { replace: true });
   };
 
   useEffect(() => {
@@ -221,7 +221,7 @@ function App() {
               loggedIn ? (
                 <Navigate to="/" replace />
               ) : (
-                <Navigate to="/sign-in" replace />
+                <Navigate to="/signin" replace />
               )
             }
           />
@@ -243,10 +243,10 @@ function App() {
             }
           />
           <Route
-            path="/sign-up"
+            path="/signup"
             element={<Register onRegister={handleRegister} />}
           />
-          <Route path="/sign-in" element={<Login onLogin={handleLogin} />} />
+          <Route path="/signin" element={<Login onLogin={handleLogin} />} />
         </Routes>
 
         {loggedIn && <Footer />}
