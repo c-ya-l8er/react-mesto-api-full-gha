@@ -1,7 +1,6 @@
 class Api {
-  constructor(options) {
-    this._baseUrl = options.baseUrl;
-    this._headers = options.headers;
+  constructor({ baseUrl }) {
+    this._baseUrl = baseUrl;
   }
 
   _checkResponse(res) {
@@ -16,15 +15,21 @@ class Api {
   }
 
   getInitialCards() {
+    const token = localStorage.getItem("jwt");
     return this._request(`${this._baseUrl}/cards`, {
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     });
   }
 
   setInitialCards(data) {
+    const token = localStorage.getItem("jwt");
     return this._request(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         name: data.name,
         link: data.link,
@@ -33,15 +38,21 @@ class Api {
   }
 
   getUserInfo() {
+    const token = localStorage.getItem("jwt");
     return this._request(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     });
   }
 
   setUserInfo(data) {
+    const token = localStorage.getItem("jwt");
     return this._request(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         name: data.name,
         about: data.about,
@@ -50,9 +61,12 @@ class Api {
   }
 
   setUserAvatar(data) {
+    const token = localStorage.getItem("jwt");
     return this._request(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         avatar: data.avatar,
       }),
@@ -60,24 +74,29 @@ class Api {
   }
 
   changeLikeCardStatus(cardId, like) {
+    const token = localStorage.getItem("jwt");
     return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: like ? "PUT" : "DELETE",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     });
   }
 
   removeCard(cardId) {
+    const token = localStorage.getItem("jwt");
     return this._request(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     });
   }
 }
 
 const api = new Api({
-  baseUrl: "https://mesto-c-ya-l8er.nomoredomainsrocks.ru",
+  baseUrl: "https://api.mesto-c-ya-l8er.nomoredomainsrocks.ru",
   headers: {
-    authorization: "a04dfc18-37ef-4557-8dab-9c7099f92080",
     "Content-Type": "application/json",
   },
 });

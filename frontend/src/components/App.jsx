@@ -45,8 +45,8 @@ function App() {
   }, [loggedIn]);
 
   const handleTokenCheck = () => {
-    if (localStorage.getItem("token")) {
-      const jwt = localStorage.getItem("token");
+    if (localStorage.getItem("jwt")) {
+      const jwt = localStorage.getItem("jwt");
       auth
         .checkToken(jwt)
         .then((res) => {
@@ -67,7 +67,7 @@ function App() {
       .authorize(email, password)
       .then((res) => {
         if (res.token) {
-          localStorage.setItem("token", res.token);
+          localStorage.setItem("jwt", res.token);
           setLoggedIn(true);
           setEmail(email);
           navigate("/", { replace: true });
@@ -95,7 +95,7 @@ function App() {
   };
 
   const handleSignOut = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("jwt");
     setLoggedIn(false);
     setEmail("");
     navigate("/signin", { replace: true });

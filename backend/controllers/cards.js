@@ -7,7 +7,7 @@ const FORBIDDEN = require('../errors/Forbidden');
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
-    .then((cards) => res.status(statusCodes.OK).send({ data: cards }))
+    .then((cards) => res.status(statusCodes.OK).send(cards))
     .catch(next);
 };
 
