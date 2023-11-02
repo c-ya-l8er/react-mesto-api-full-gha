@@ -75,8 +75,9 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://api.mesto-c-ya-l8er.nomoredomainsrocks.ru",
+  baseUrl: "http://mesto-c-ya-l8er.nomoredomainsrocks.ru",
   headers: {
+    'Authorization': `Bearer ${localStorage.getItem('token')}`,
     "Content-Type": "application/json",
   },
 });

@@ -21,17 +21,17 @@ function Header({ email, onSignOut }) {
           }
         />
         <Route
-          path="/sign-in"
+          path="/signin"
           element={
-            <Link to="/sign-up" className="header__link">
+            <Link to="/signup" className="header__link">
               Регистрация
             </Link>
           }
         />
         <Route
-          path="/sign-up"
+          path="/signup"
           element={
-            <Link to="/sign-in" className="header__link">
+            <Link to="/signin" className="header__link">
               Войти
             </Link>
           }
