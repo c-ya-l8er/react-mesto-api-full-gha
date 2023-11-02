@@ -11,7 +11,7 @@ const NOT_FOUND = require('./errors/NotFound');
 
 const httpRegex = /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-/])*)?/;
 
-const { PORT = 3001, MONGO_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
+const { PORT = 3000, MONGO_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
 
 const app = express();
 app.use(cors);
