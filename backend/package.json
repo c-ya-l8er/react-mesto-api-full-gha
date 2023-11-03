@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "repository": "git@github.com:c-ya-l8er/express-mesto-gha.git",
-  "author": "c-ya-l8er <c-ya-l8er@ya.ru>",
+  "author": "c-ya-l8er",
   "license": "MIT",
   "scripts": {
     "start": "node app.js",
