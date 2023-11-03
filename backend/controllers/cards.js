@@ -12,9 +12,10 @@ module.exports.getCards = (req, res, next) => {
 };
 
 module.exports.createCard = (req, res, next) => {
+  const owner = req.user._id;
   const { name, link } = req.body;
-  Card.create({ name, link, owner: req.user._id })
-    .then((card) => res.status(statusCodes.CREATED).send({ data: card }))
+  Card.create({ name, link, owner })
+    .then((card) => res.status(statusCodes.CREATED).send(card))
     .catch((error) => {
       if (error instanceof ValidationError) {
         return next(new BAD_REQUEST('Переданы некорректные данные при создании карточки'));
@@ -30,7 +31,7 @@ module.exports.deleteCard = (req, res, next) => {
       if (card.owner.toString() !== req.user._id) {
         return next(new FORBIDDEN('Невозможно удалить карточку'));
       }
-      return Card.deleteOne(card).then(() => res.status(statusCodes.OK).send({ data: card }));
+      return Card.deleteOne(card).then(() => res.status(statusCodes.OK).send(card));
     })
     .catch((error) => {
       if (error instanceof CastError) {
@@ -43,7 +44,7 @@ module.exports.deleteCard = (req, res, next) => {
 function changeLikeCardStatus(req, res, likeStatus, next) {
   Card.findByIdAndUpdate(req.params.cardId, likeStatus, { new: true })
     .orFail(new NOT_FOUND('NotFound'))
-    .then((card) => res.status(statusCodes.OK).send({ data: card }))
+    .then((card) => res.status(statusCodes.OK).send(card))
     .catch((error) => {
       if (error instanceof CastError) {
         return next(new BAD_REQUEST('Переданы некорректные данные для постановки/снятия лайка'));

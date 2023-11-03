@@ -1,10 +1,8 @@
-export const BASE_URL = "https://api.mesto-c-ya-l8er.nomoredomainsrocks.ru";
+export const BASE_URL = "https://mesto-c-ya-l8er.nomoredomainsrocks.ru";
+// export const BASE_URL = "http://localhost:3000";
 
 const checkResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Ошибка: ${res.status}`);
+  return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 };
 
 export const register = (email, password) => {
@@ -15,23 +13,24 @@ export const register = (email, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then((data) => {
-    localStorage.setItem('jwt', data.token);
-    return data;
-  });
+  })
+  .then(checkResponse)
 };
 
 export const authorize = (email, password) => {
-  const token = localStorage.getItem('jwt');
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
       "Accept": "application/json",
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
     },
     body: JSON.stringify({ email, password }),
-  }).then(checkResponse);
+  })
+  .then(checkResponse)
+  .then((data) => {
+    localStorage.setItem('jwt', data.token);
+    return data;
+  });
 };
 
 export const checkToken = () => {

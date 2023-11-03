@@ -19,21 +19,20 @@ class Api {
     return this._request(`${this._baseUrl}/cards`, {
       headers: {
         authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
     });
   }
 
-  setInitialCards(data) {
+  setInitialCards({ name, link }) {
     const token = localStorage.getItem("jwt");
     return this._request(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: {
         authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: data.name,
-        link: data.link,
-      }),
+      body: JSON.stringify({ name, link }),
     });
   }
 
@@ -46,30 +45,27 @@ class Api {
     });
   }
 
-  setUserInfo(data) {
+  setUserInfo({ name, about }) {
     const token = localStorage.getItem("jwt");
     return this._request(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
         authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: data.name,
-        about: data.about,
-      }),
+      body: JSON.stringify({ name, about }),
     });
   }
 
-  setUserAvatar(data) {
+  setUserAvatar({ avatar }) {
     const token = localStorage.getItem("jwt");
     return this._request(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
         authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        avatar: data.avatar,
-      }),
+      body: JSON.stringify({ avatar }),
     });
   }
 
@@ -79,6 +75,7 @@ class Api {
       method: like ? "PUT" : "DELETE",
       headers: {
         authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
     });
   }
@@ -95,7 +92,8 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://api.mesto-c-ya-l8er.nomoredomainsrocks.ru",
+  baseUrl: "https://mesto-c-ya-l8er.nomoredomainsrocks.ru",
+  // baseUrl: "http://localhost:3000",
   headers: {
     "Content-Type": "application/json",
   },

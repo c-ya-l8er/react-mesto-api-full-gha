@@ -9,7 +9,7 @@ const CONFLICT = require('../errors/Conflict');
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
-    .then((users) => res.status(statusCodes.OK).send({ data: users }))
+    .then((users) => res.status(statusCodes.OK).send(users))
     .catch(next);
 };
 
@@ -17,7 +17,7 @@ module.exports.getUserById = (req, res, next) => {
   const { userId } = req.params;
   User.findById(userId)
     .orFail(new NOT_FOUND('NotFound'))
-    .then((user) => res.status(statusCodes.OK).send({ data: user }))
+    .then((user) => res.status(statusCodes.OK).send(user))
     .catch((error) => {
       if (error instanceof CastError) {
         return next(new BAD_REQUEST('Передан не валидный id'));
@@ -30,7 +30,7 @@ module.exports.getCurrentUser = (req, res, next) => {
   const userId = req.user._id;
   User.findById(userId)
     .orFail(new NOT_FOUND('NotFound'))
-    .then((user) => res.status(statusCodes.OK).send({ data: user }))
+    .then((user) => res.status(statusCodes.OK).send(user))
     .catch(next);
 };
 
@@ -70,7 +70,7 @@ function updateUser(req, res, newData, next) {
   const userId = req.user._id;
   User.findByIdAndUpdate(userId, newData, { new: true, runValidators: true })
     .orFail(new NOT_FOUND('NotFound'))
-    .then((user) => res.status(statusCodes.OK).send({ data: user }))
+    .then((user) => res.status(statusCodes.OK).send(user))
     .catch((error) => {
       if (error instanceof CastError) {
         return next(new BAD_REQUEST('Переданы некорректные данные при обновлении профиля'));
@@ -93,7 +93,7 @@ module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      res.send({
+      res.status(200).send({
         token: jwt.sign({ _id: user._id }, 'super-puper-secret', {
           expiresIn: '7d',
         }),
