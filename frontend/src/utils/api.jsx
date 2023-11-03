@@ -92,7 +92,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://mesto-c-ya-l8er.nomoredomainsrocks.ru",
+  baseUrl: "https://api.mesto-c-ya-l8er.nomoredomainsrocks.ru",
   // baseUrl: "http://localhost:3000",
   headers: {
     "Content-Type": "application/json",
