@@ -6,6 +6,9 @@ const statusCodes = require('../utils/constants').HTTP_STATUS;
 const NOT_FOUND = require('../errors/NotFound');
 const BAD_REQUEST = require('../errors/BadRequest');
 const CONFLICT = require('../errors/Conflict');
+require('dotenv').config();
+
+const JWT_SECRET = process.env.NODE_ENV === 'production' ? process.env.JWT_SECRET : 'super-puper-secret';
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
@@ -94,7 +97,7 @@ module.exports.login = (req, res, next) => {
   return User.findUserByCredentials(email, password)
     .then((user) => {
       res.status(200).send({
-        token: jwt.sign({ _id: user._id }, 'super-puper-secret', {
+        token: jwt.sign({ _id: user._id }, JWT_SECRET, {
           expiresIn: '7d',
         }),
       });
