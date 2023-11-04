@@ -6,7 +6,7 @@ const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const router = require('./routes/index');
 const { login, createUser } = require('./controllers/users');
-const auth = require('./middlewares/auth').default;
+const auth = require('./middlewares/auth');
 const NOT_FOUND = require('./errors/NotFound');
 
 const httpRegex = /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-/])*)?/;
